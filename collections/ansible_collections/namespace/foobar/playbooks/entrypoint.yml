@@ -1,0 +1,15 @@
+---
+- hosts: '{{ target|default("localhost") }}'
+  gather_facts: false
+  roles:
+    - role: do_stuff
+
+- import_playbook: namespace.common.included
+
+- hosts: '{{ target|default("localhost") }}'
+  gather_facts: false
+  roles:
+    # If import_playbook is done; 'common_ping' could be included without
+    # the need of the 'collections' keywork at play level
+    #- role: common_ping
+    - role: do_stuff
